@@ -6,8 +6,10 @@ MAX_TURNS = 12
 
 # Създаваме графичното приложение
 root = tk.Tk()
-root.title("Познай думата")
-root.geometry("400x300")
+root.iconbitmap('icon.ico')
+root.title("Бесеница")
+root.geometry("600x350")
+# root.configure(background='white') #background color
 
 # Определяме променливи за думата, познатите букви и грешните опити
 word = random.choice(["куче", "котка", "мечка", "лисица", "лимон", "банан"])
@@ -174,7 +176,7 @@ def update_display():
     display_word = " ".join([letter if letter in guesses else "_" for letter in word])
     display_word_label.config(text=display_word)
     wrong_guesses_label.config(text="Грешни опити: " + ", ".join(sorted(wrong_guesses)))
-    wrong_attempts_label.config(text=f"Брой грешни опити: {wrong_attempts}")  # обновяваме брояча на грешните опити
+    # wrong_attempts_label.config(text=f"Брой грешни опити: {wrong_attempts}")  # обновяваме брояча на грешните опити
     wrong_attempts_label.config(text=f"{get_wrong_attempts_word()}")
 
 
