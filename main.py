@@ -21,17 +21,17 @@ def guess_letter(letter):
         update_display()
         if all(letter in guesses for letter in word):
             show_message("Поздравления! Познахте думата!")
-            root.quit()
+            # root.quit() # Не затваряме играта веднага след победа
     else:
         wrong_guesses.add(letter)
         update_display()
         if len(wrong_guesses) >= MAX_TURNS:
             show_message(f"Загубихте! Думата беше '{word}'.")
-            root.quit()
+            # root.quit()  # Не затваряме играта веднага след загуба
 
 # Дефинираме функцията, която ще обновява дисплея на играта
 def update_display():
-    display_word = "".join([letter if letter in guesses else "_" for letter in word])
+    display_word = " ".join([letter if letter in guesses else "_" for letter in word])
     display_word_label.config(text=display_word)
     wrong_guesses_label.config(text="Грешни опити: " + ", ".join(sorted(wrong_guesses)))
 
@@ -40,7 +40,7 @@ def show_message(message):
     message_label.config(text=message)
 
 # Добавяме елементи към графичното приложение
-display_word_label = tk.Label(root, text="".join(["_" for letter in word]))
+display_word_label = tk.Label(root, text=" ".join(["_" for letter in word]))
 display_word_label.pack()
 
 letters_frame = tk.Frame(root)
