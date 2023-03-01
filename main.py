@@ -7,12 +7,14 @@ MAX_TURNS = 12
 # Създаваме графичното приложение
 root = tk.Tk()
 root.title("Познай думата")
-root.geometry("400x300")
+root.geometry("600x400")
 
 # Определяме променливи за думата, познатите букви и грешните опити
 word = random.choice(["куче", "котка", "мечка", "лисица", "лимон", "банан"])
 guesses = set()
 wrong_guesses = set()
+wrong_guesses_counter = 0
+
 
 # Дефинираме функцията, която ще бъде извиквана при натискане на буква
 def guess_letter(letter):
@@ -29,24 +31,30 @@ def guess_letter(letter):
             show_message(f"Загубихте! Думата беше '{word}'.")
             # root.quit()  # Не затваряме играта веднага след загуба
 
+
 # Дефинираме функцията, която ще обновява дисплея на играта
 def update_display():
     display_word = " ".join([letter if letter in guesses else "_" for letter in word])
     display_word_label.config(text=display_word)
     wrong_guesses_label.config(text="Грешни опити: " + ", ".join(sorted(wrong_guesses)))
 
+
 # Дефинираме функцията, която показва съобщение на екрана
 def show_message(message):
     message_label.config(text=message)
 
+
+
 # Добавяме елементи към графичното приложение
-display_word_label = tk.Label(root, text=" ".join(["_" for letter in word]))
+display_word_label = tk.Label(root, text=" ".join(["_" for letter in word]), font=('Arial', 25))
 display_word_label.pack()
 
 letters_frame = tk.Frame(root)
+
 for letter in "абвгдежзийклмнопрстуфхцчшщъьюя":
     letter_button = tk.Button(letters_frame, text=letter, command=lambda letter=letter: guess_letter(letter))
     letter_button.pack(side=tk.LEFT)
+
 letters_frame.pack()
 
 wrong_guesses_label = tk.Label(root, text="Грешни опити:")
@@ -55,5 +63,17 @@ wrong_guesses_label.pack()
 message_label = tk.Label(root, text="")
 message_label.pack()
 
+text_label = tk.Label(root, text="""________    
+|      |     
+|      O     
+|     /|\\    
+|    / | \\   
+|     / \\    
+|    /   \\   
+|____________""", font=('Consolas', 15))
+text_label.pack()
+
 # Стартираме графичното приложение
 root.mainloop()
+
+print(wrong_guesses)
