@@ -10,17 +10,42 @@ root.iconbitmap('icon.ico')
 root.title("Бесеница")
 root.geometry("600x350")
 root.configure(bg='#e6f2ff')
+# theme_index = 0
+word = ""
+theme_name = ""
+words = ""
 
 # Определяне на случайна тена
 
+theme_animals = ['котка', 'куче', 'маймуна', 'крава', 'крокодил', 'слон', 'лъв', 'тигър', 'жираф', 'зебра']
+theme_birds = ['гарван', 'орел', 'патица', 'врабче', 'гълъб', 'папагал', 'чайка', 'пеликан', 'фламинго', 'марабу']
+theme_jobs = ['програмист', 'аналитик', 'актьор', 'певец', 'инженер', 'архитект', 'бръснар', 'учен', 'адвокат', 'дизайнер']
+theme_body_parts = ['глава', 'врат', 'ръка', 'крак', 'крак', 'ръка', 'гърди', 'коляно', 'лакът', 'глезен']
+
+theme_index = random.choice(range(0, 4))
+
+if theme_index == 0:
+    theme_name = "животни"
+    words = theme_animals
+elif theme_index == 1:
+    theme_name = "птици"
+    words = theme_birds
+elif theme_index == 2:
+    theme_name = "професии"
+    words = theme_jobs
+elif theme_index == 3:
+    theme_name = "части на тялото"
+    words = theme_body_parts
+
+word = random.choice(words)
 
 
 # Определяме променливи за думата, познатите букви и грешните опити
-word = random.choice(["куче", "котка", "мечка", "лисица", "лимон", "банан"])
+# word = random.choice(["куче", "котка", "мечка", "лисица", "лимон", "банан"])
 guesses = set()
 wrong_guesses = set()
 wrong_attempts = 0
-theme = "Тема"
+# theme = "Тема"
 wrong_attempts_words = ["""
 ________     
 |            
@@ -195,7 +220,7 @@ def show_message(message):
 # Добавяме елементи към графичното приложение
 
 
-theme_label = tk.Label(root, text=f"{theme}", font=('Arial', 15), bg="#e6f2ff", fg="#0000FF")
+theme_label = tk.Label(root, text=f"Познай думата! Темата е: {theme_name.upper()}", font=('Arial', 15), bg="#e6f2ff", fg="#0000FF")
 theme_label.pack()
 
 
