@@ -9,6 +9,8 @@ root = tk.Tk()
 root.iconbitmap('icon.ico')
 root.title("Бесеница")
 root.geometry("600x350")
+root.configure(bg='#e6f2ff')
+
 # root.configure(background='white') #background color
 
 # Определяме променливи за думата, познатите букви и грешните опити
@@ -195,27 +197,27 @@ def show_message(message):
 
 
 # Добавяме елементи към графичното приложение
-display_word_label = tk.Label(root, text=" ".join(["_" for letter in word]), font=('Arial', 25))
+display_word_label = tk.Label(root, text=" ".join(["_" for letter in word]), font=('Arial', 25), bg="#e6f2ff", fg="#0000FF")
 display_word_label.pack()
 
 letters_frame = tk.Frame(root)
 
 for letter in "абвгдежзийклмнопрстуфхцчшщъьюя":
-    letter_button = tk.Button(letters_frame, text=letter, command=lambda letter=letter: guess_letter(letter))
+    letter_button = tk.Button(letters_frame, text=letter, command=lambda letter=letter: guess_letter(letter), bg="#e6f2ff", fg="#0000FF")
     letter_button.pack(side=tk.LEFT)
 
 letters_frame.pack()
 
-wrong_guesses_label = tk.Label(root, text="Грешни опити:")
+wrong_guesses_label = tk.Label(root, text="Грешни опити:", bg="#e6f2ff")
 wrong_guesses_label.pack()
 
-message_label = tk.Label(root, text="")
+message_label = tk.Label(root, text="", bg="#e6f2ff")
 message_label.pack()
 
 # wrong_attempts_label = tk.Label(root, text="Брой грешни опити: 0")
 # wrong_attempts_label.pack()
 
-wrong_attempts_label = tk.Label(root, text=f"{get_wrong_attempts_word()}", font=('Consolas', 15))
+wrong_attempts_label = tk.Label(root, text=f"{get_wrong_attempts_word()}", font=('Consolas', 15), fg="#0000FF", bg="#cce6ff")
 wrong_attempts_label.pack()
 
 # Стартираме графичното приложение
