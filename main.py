@@ -11,13 +11,16 @@ root.title("Бесеница")
 root.geometry("600x350")
 root.configure(bg='#e6f2ff')
 
-# root.configure(background='white') #background color
+# Определяне на случайна тена
+
+
 
 # Определяме променливи за думата, познатите букви и грешните опити
 word = random.choice(["куче", "котка", "мечка", "лисица", "лимон", "банан"])
 guesses = set()
 wrong_guesses = set()
 wrong_attempts = 0
+theme = "Тема"
 wrong_attempts_words = ["""
 ________     
 |            
@@ -187,16 +190,15 @@ def show_message(message):
     message_label.config(text=message)
 
 
-# def show_message(wrong_attempts_f):
-#     if wrong_attempts == 0:
-#         message_label.config(text="Започваме играта. Познай думата!")
-#     elif wrong_attempts < MAX_TURNS:
-#         message_label.config(text=f"Опит {wrong_attempts} от {MAX_TURNS}. Опитай отново!")
-#     else:
-#         message_label.config(text=f"Загубихте! Думата беше '{word}'.")
 
 
 # Добавяме елементи към графичното приложение
+
+
+theme_label = tk.Label(root, text=f"{theme}", font=('Arial', 15), bg="#e6f2ff", fg="#0000FF")
+theme_label.pack()
+
+
 display_word_label = tk.Label(root, text=" ".join(["_" for letter in word]), font=('Arial', 25), bg="#e6f2ff", fg="#0000FF")
 display_word_label.pack()
 
