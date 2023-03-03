@@ -1,5 +1,6 @@
 import random
 import tkinter as tk
+from playsound import playsound
 
 # Определяме константи
 MAX_TURNS = 12
@@ -192,6 +193,8 @@ def guess_letter(letter):
         update_display()
         if all(letter in guesses for letter in word):
             show_message("Поздравления! Познахте думата!")
+            file = "win.mp3"
+            playsound(file)
             # root.quit() # Не затваряме играта веднага след победа
     else:
         wrong_guesses.add(letter)
@@ -199,6 +202,8 @@ def guess_letter(letter):
         update_display()
         if wrong_attempts >= MAX_TURNS:
             show_message(f"Загубихте! Думата беше '{word}'.")
+            file = "lose.mp3"
+            playsound(file)
             # root.quit()  # Не затваряме играта веднага след загуба
 
 
