@@ -8,7 +8,7 @@ MAX_TURNS = 12
 root = tk.Tk()
 root.iconbitmap('icon.ico')
 root.title("Бесеница")
-root.geometry("600x350")
+root.geometry("500x500")
 root.configure(bg='#e6f2ff')
 # theme_index = 0
 word = ""
@@ -229,13 +229,19 @@ display_word_label.pack()
 
 letters_frame = tk.Frame(root)
 
-for letter in "абвгдежзийклмнопрстуфхцчшщъьюя":
-    letter_button = tk.Button(letters_frame, text=letter, command=lambda letter=letter: guess_letter(letter), bg="#e6f2ff", fg="#0000FF")
-    letter_button.pack(side=tk.LEFT)
-
+for i, letter in enumerate("абвгдежзийклмнопрстуфхцчшщъьюя"):
+    letter_button = tk.Button(letters_frame, text=letter, command=lambda letter=letter: guess_letter(letter),
+                              bg="#0000FF",
+                              fg="#e6f2ff",
+                              font=('Consolas', 15),
+                              padx=5,
+                              pady=5,
+                              # relief=tk.RIDGE,
+                              borderwidth=5)
+    letter_button.grid(row=i // 10, column=i % 10)
 letters_frame.pack()
 
-wrong_guesses_label = tk.Label(root, text="Грешни опити:", bg="#e6f2ff")
+wrong_guesses_label = tk.Label(root, text="Грешни опити:", bg="#e6f2ff", fg="#0000FF",font=('Consolas', 12))
 wrong_guesses_label.pack()
 
 message_label = tk.Label(root, text="", bg="#e6f2ff")
