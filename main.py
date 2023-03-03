@@ -19,7 +19,8 @@ words = ""
 
 theme_animals = ['котка', 'куче', 'маймуна', 'крава', 'крокодил', 'слон', 'лъв', 'тигър', 'жираф', 'зебра']
 theme_birds = ['гарван', 'орел', 'патица', 'врабче', 'гълъб', 'папагал', 'чайка', 'пеликан', 'фламинго', 'марабу']
-theme_jobs = ['програмист', 'аналитик', 'актьор', 'певец', 'инженер', 'архитект', 'бръснар', 'учен', 'адвокат', 'дизайнер']
+theme_jobs = ['програмист', 'аналитик', 'актьор', 'певец', 'инженер', 'архитект', 'бръснар', 'учен', 'адвокат',
+              'дизайнер']
 theme_body_parts = ['глава', 'врат', 'ръка', 'крак', 'крак', 'ръка', 'гърди', 'коляно', 'лакът', 'глезен']
 
 theme_index = random.choice(range(0, 4))
@@ -39,7 +40,6 @@ elif theme_index == 3:
 
 word = random.choice(words)
 
-
 # Определяме променливи за думата, познатите букви и грешните опити
 # word = random.choice(["куче", "котка", "мечка", "лисица", "лимон", "банан"])
 guesses = set()
@@ -56,7 +56,7 @@ ________
 |            
 |____________
 """,
-"""
+                        """
 ________     
 |      |     
 |            
@@ -66,37 +66,37 @@ ________
 |            
 |____________
 """,
-"""
-________     
-|      |     
-|      O     
-|            
-|            
-|            
-|            
-|____________
-""",
-"""
+                        """
 ________     
 |      |     
 |      O     
-|      |     
+|            
 |            
 |            
 |            
 |____________
 """,
-"""
+                        """
 ________     
 |      |     
 |      O     
 |      |     
+|            
+|            
+|            
+|____________
+""",
+                        """
+________     
+|      |     
+|      O     
+|      |     
 |      |     
 |            
 |            
 |____________
 """,
-"""
+                        """
 ________     
 |      |     
 |      O     
@@ -106,7 +106,7 @@ ________
 |            
 |____________
 """,
-"""
+                        """
 ________     
 |      |     
 |      O     
@@ -116,7 +116,7 @@ ________
 |            
 |____________
 """,
-"""
+                        """
 ________     
 |      |     
 |      O     
@@ -126,7 +126,7 @@ ________
 |            
 |____________
 """,
-"""
+                        """
 ________     
 |      |     
 |      O     
@@ -136,7 +136,7 @@ ________
 |            
 |____________
 """,
-"""
+                        """
 ________     
 |      |     
 |      O     
@@ -146,7 +146,7 @@ ________
 |            
 |____________
 """,
-"""
+                        """
 ________     
 |      |     
 |      O     
@@ -156,7 +156,7 @@ ________
 |    /       
 |____________
 """,
-"""
+                        """
 ________     
 |      |     
 |      O     
@@ -166,7 +166,7 @@ ________
 |    /       
 |____________
 """,
-"""
+                        """
 ________     
 |      |     
 |      O     
@@ -176,7 +176,8 @@ ________
 |    /   \   
 |____________
 """
-]
+                        ]
+
 
 # Определяме функция, която връща думата за броя на грешните опити
 def get_wrong_attempts_word():
@@ -215,16 +216,19 @@ def show_message(message):
     message_label.config(text=message)
 
 
-
-
 # Добавяме елементи към графичното приложение
 
 
-theme_label = tk.Label(root, text=f"Познай думата! Темата е: {theme_name.upper()}", font=('Arial', 15), bg="#e6f2ff", fg="#0000FF")
+theme_label = tk.Label(root, text=f"Познай думата! Темата е: {theme_name.upper()}",
+                       font=('Arial', 15),
+                       bg="#e6f2ff",
+                       fg="#0000FF")
 theme_label.pack()
 
-
-display_word_label = tk.Label(root, text=" ".join(["_" for letter in word]), font=('Arial', 25), bg="#e6f2ff", fg="#0000FF")
+display_word_label = tk.Label(root, text=" ".join(["_" for letter in word]),
+                              font=('Arial', 25),
+                              bg="#e6f2ff",
+                              fg="#0000FF")
 display_word_label.pack()
 
 letters_frame = tk.Frame(root)
@@ -241,19 +245,22 @@ for i, letter in enumerate("абвгдежзийклмнопрстуфхцчшщ
     letter_button.grid(row=i // 10, column=i % 10)
 letters_frame.pack()
 
-wrong_guesses_label = tk.Label(root, text="Грешни опити:", bg="#e6f2ff", fg="#0000FF",font=('Consolas', 12))
+wrong_guesses_label = tk.Label(root, text="Грешни опити:",
+                               bg="#e6f2ff",
+                               fg="#0000FF",
+                               font=('Arial', 13))
 wrong_guesses_label.pack()
 
-message_label = tk.Label(root, text="", bg="#e6f2ff")
+message_label = tk.Label(root, text="", bg="#e6f2ff",
+                         fg="#0000FF",
+                         font=('Consolas', 15))
 message_label.pack()
 
-# wrong_attempts_label = tk.Label(root, text="Брой грешни опити: 0")
-# wrong_attempts_label.pack()
-
-wrong_attempts_label = tk.Label(root, text=f"{get_wrong_attempts_word()}", font=('Consolas', 15), fg="#0000FF", bg="#cce6ff")
+wrong_attempts_label = tk.Label(root, text=f"{get_wrong_attempts_word()}",
+                                font=('Consolas', 15),
+                                fg="#0000FF",
+                                bg="#cce6ff")
 wrong_attempts_label.pack()
 
 # Стартираме графичното приложение
 root.mainloop()
-
-print(wrong_guesses)
