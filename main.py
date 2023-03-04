@@ -10,9 +10,8 @@ MAX_TURNS = 12
 root = tk.Tk()
 root.iconbitmap('D:\Education\Python\Projects\guess-the-word-bg-tkinter\icon.ico')
 root.title("Бесеница")
-root.geometry("500x500")
+root.geometry("500x600")
 root.configure(bg='#e6f2ff')
-# theme_index = 0
 word = ""
 theme_name = ""
 words = ""
@@ -43,11 +42,9 @@ elif theme_index == 3:
 word = random.choice(words)
 
 # Определяме променливи за думата, познатите букви и грешните опити
-# word = random.choice(["куче", "котка", "мечка", "лисица", "лимон", "банан"])
 guesses = set()
 wrong_guesses = set()
 wrong_attempts = 0
-# theme = "Тема"
 wrong_attempts_words = ["""
 ________     
 |            
@@ -195,7 +192,7 @@ def guess_letter(letter):
         winsound.Beep(350, 200)
         winsound.Beep(450, 300)
         if all(letter in guesses for letter in word):
-            show_message("Поздравления! Познахте думата!")
+            show_message(f"Поздравления! Познахте Думата беше '{word}'!")
             file = "D:\Education\Python\Projects\guess-the-word-bg-tkinter\win.mp3"
             playsound(file)
             # root.quit() # Не затваряме играта веднага след победа
@@ -206,7 +203,7 @@ def guess_letter(letter):
         update_display()
         winsound.Beep(250, 500)
         if wrong_attempts >= MAX_TURNS:
-            show_message(f"Загубихте! Думата беше '{word}'.")
+            show_message(f"Загубихте! Думата беше '{word}'!")
             file = "D:\Education\Python\Projects\guess-the-word-bg-tkinter\lose.mp3"
             playsound(file)
             # root.quit()  # Не затваряме играта веднага след загуба
@@ -214,10 +211,11 @@ def guess_letter(letter):
 
 # Дефинираме функцията, която ще обновява дисплея на играта
 def update_display():
+
+    theme_label.configure(text=f"Познай думата! Темата е: {theme_name.upper()}")
     display_word = " ".join([letter if letter in guesses else "_" for letter in word])
     display_word_label.config(text=display_word)
     wrong_guesses_label.config(text="Грешни опити: " + ", ".join(sorted(wrong_guesses)))
-    # wrong_attempts_label.config(text=f"Брой грешни опити: {wrong_attempts}")  # обновяваме брояча на грешните опити
     wrong_attempts_label.config(text=f"{get_wrong_attempts_word()}")
 
 
@@ -225,6 +223,33 @@ def update_display():
 
 def show_message(message):
     message_label.config(text=message)
+
+# код за рестартиране на приложението
+
+
+def restart():
+    global word, guesses, wrong_guesses, wrong_attempts, theme_index, theme_name, words
+    word = ""
+    guesses = set()
+    wrong_guesses = set()
+    wrong_attempts = 0
+    theme_index = random.choice(range(0, 4))
+    if theme_index == 0:
+        theme_name = "животни"
+        words = theme_animals
+    elif theme_index == 1:
+        theme_name = "птици"
+        words = theme_birds
+    elif theme_index == 2:
+        theme_name = "професии"
+        words = theme_jobs
+    elif theme_index == 3:
+        theme_name = "части на тялото"
+        words = theme_body_parts
+    word = random.choice(words)
+    # theme_label = tk.Label(root, text="")
+    update_display()
+
 
 
 # Добавяме елементи към графичното приложение
@@ -254,6 +279,7 @@ for i, letter in enumerate("абвгдежзийклмнопрстуфхцчшщ
                               # relief=tk.RIDGE,
                               borderwidth=5)
     letter_button.grid(row=i // 10, column=i % 10)
+
 letters_frame.pack()
 
 wrong_guesses_label = tk.Label(root, text="Грешни опити:",
@@ -272,6 +298,17 @@ wrong_attempts_label = tk.Label(root, text=f"{get_wrong_attempts_word()}",
                                 fg="#0000FF",
                                 bg="#cce6ff")
 wrong_attempts_label.pack()
+
+restart_button = tk.Button(root, text="Изтегли нова дума и тема", command=restart,
+                                bg="#0000FF",
+                                fg="#e6f2ff",
+                                font=('Consolas', 15),
+                                padx=5,
+                                pady=5,
+                                relief=tk.RIDGE,
+                                borderwidth=5)
+restart_button.pack()
+
 
 # Стартираме графичното приложение
 
