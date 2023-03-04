@@ -1,6 +1,7 @@
 import random
 import tkinter as tk
 from playsound import playsound
+import winsound
 
 # Определяме константи
 MAX_TURNS = 12
@@ -191,6 +192,8 @@ def guess_letter(letter):
         global wrong_attempts
         guesses.add(letter)
         update_display()
+        winsound.Beep(350, 200)
+        winsound.Beep(450, 300)
         if all(letter in guesses for letter in word):
             show_message("Поздравления! Познахте думата!")
             file = "win.mp3"
@@ -200,6 +203,7 @@ def guess_letter(letter):
         wrong_guesses.add(letter)
         wrong_attempts += 1  # увеличаваме брояча на грешните опити
         update_display()
+        winsound.Beep(250, 500)
         if wrong_attempts >= MAX_TURNS:
             show_message(f"Загубихте! Думата беше '{word}'.")
             file = "lose.mp3"
@@ -214,7 +218,6 @@ def update_display():
     wrong_guesses_label.config(text="Грешни опити: " + ", ".join(sorted(wrong_guesses)))
     # wrong_attempts_label.config(text=f"Брой грешни опити: {wrong_attempts}")  # обновяваме брояча на грешните опити
     wrong_attempts_label.config(text=f"{get_wrong_attempts_word()}")
-
 
 # Дефинираме функцията, която показва съобщение на екрана
 def show_message(message):
