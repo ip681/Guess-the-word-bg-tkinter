@@ -200,6 +200,7 @@ def guess_letter(letter):
             playsound(file)
             # root.quit() # Не затваряме играта веднага след победа
     else:
+        global wrong_attempts  # това не съм сигурен, без него работи, но дава warning :)
         wrong_guesses.add(letter)
         wrong_attempts += 1  # увеличаваме брояча на грешните опити
         update_display()
@@ -219,7 +220,9 @@ def update_display():
     # wrong_attempts_label.config(text=f"Брой грешни опити: {wrong_attempts}")  # обновяваме брояча на грешните опити
     wrong_attempts_label.config(text=f"{get_wrong_attempts_word()}")
 
+
 # Дефинираме функцията, която показва съобщение на екрана
+
 def show_message(message):
     message_label.config(text=message)
 
@@ -271,4 +274,5 @@ wrong_attempts_label = tk.Label(root, text=f"{get_wrong_attempts_word()}",
 wrong_attempts_label.pack()
 
 # Стартираме графичното приложение
+
 root.mainloop()
