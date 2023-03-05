@@ -8,7 +8,7 @@ MAX_TURNS = 12
 
 # Създаваме графичното приложение
 root = tk.Tk()
-root.iconbitmap('D:\Education\Python\Projects\guess-the-word-bg-tkinter\icon.ico')
+root.iconbitmap('resources\icon.ico')
 root.title("Бесеница")
 root.geometry("500x600")
 root.configure(bg='#e6f2ff')
@@ -193,7 +193,7 @@ def guess_letter(letter):
         winsound.Beep(450, 300)
         if all(letter in guesses for letter in word):
             show_message(f"Поздравления! Познахте Думата беше '{word}'!")
-            file = "D:\Education\Python\Projects\guess-the-word-bg-tkinter\win.mp3"
+            file = "resources\win.mp3"
             playsound(file)
             # root.quit() # Не затваряме играта веднага след победа
     else:
@@ -204,7 +204,7 @@ def guess_letter(letter):
         winsound.Beep(250, 500)
         if wrong_attempts >= MAX_TURNS:
             show_message(f"Загубихте! Думата беше '{word}'!")
-            file = "D:\Education\Python\Projects\guess-the-word-bg-tkinter\lose.mp3"
+            file = "resources\lose.mp3"
             playsound(file)
             # root.quit()  # Не затваряме играта веднага след загуба
 
